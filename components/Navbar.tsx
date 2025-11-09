@@ -3,7 +3,7 @@ import { Button } from "./ui/button"
 
 const Navbar = () => {
 	return (
-		<nav className="px-[220px] py-4 flex justify-between items-center">
+		<nav className="container-desktop py-4 flex justify-between items-center">
 			<Image 
 				src={'/logo.svg'}
 				alt="FoodWangen logo"

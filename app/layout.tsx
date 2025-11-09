@@ -1,11 +1,26 @@
 import type { Metadata } from "next";
-import { Source_Sans_3 } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const sourceSans = Source_Sans_3({
-  variable: "--font-source-sans",
-  subsets: ["latin"],
-});
+const sourceSansPro = localFont({
+  src: [
+    {
+      path: '../public/fonts/SourceSansPro-Regular.woff',
+      weight: '400',
+      style: 'normal'
+    },
+    {
+      path: '../public/fonts/SourceSansPro-Semibold.woff',
+      weight: '600',
+      style: 'normal'
+    },
+    {
+      path: '../public/fonts/SourceSansPro-Bold.woff',
+      weight: '700',
+      style: 'normal'
+    }
+  ]
+})
 
 export const metadata: Metadata = {
   title: "FoodWagen",
@@ -20,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${sourceSans.variable} antialiased`}
+        className={`${sourceSansPro.className} antialiased`}
       >
         {children}
       </body>
