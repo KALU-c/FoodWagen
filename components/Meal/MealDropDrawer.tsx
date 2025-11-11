@@ -50,7 +50,7 @@ export function MealDropDrawer({
 							Edit
 						</DropDrawerItem>
 					</EditMealDialog>
-					<DeleteMealDialog foodId={meal.id}>
+					<DeleteMealDialog foodId={meal?.id}>
 						<DropDrawerItem variant="destructive" icon={<Trash2 className="h-5 w-5" />} onSelect={(e) => e.preventDefault()}>
 							Delete
 						</DropDrawerItem>

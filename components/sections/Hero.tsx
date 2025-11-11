@@ -1,3 +1,5 @@
+"use client"
+
 import { Bag } from "@/components/icons/Bag"
 import { Bike } from "@/components/icons/Bike"
 import { Button } from "@/components/ui/button"
@@ -8,11 +10,15 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
+import { Spinner } from "@/components/ui/spinner"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useFilterStore } from "@/stores/useFilterStore"
 import { Search } from "lucide-react"
 import Image from "next/image"
 
 const Hero = () => {
+	const { filter, setFilter, filterMeals, isFiltering } = useFilterStore()
+
 	return (
 		<section className="h-[628px] container-desktop bg-primary flex gap-28 overflow-hidden">
 			<div className="flex flex-1 flex-col gap-8 justify-center">
@@ -44,15 +50,17 @@ const Hero = () => {
 							<Search className="h-[20px] w-[20px] text-[#F17228]" />
 							<Input
 								type="text"
+								value={filter}
 								name="food_order_input"
+								onChange={e => setFilter(e.target.value)}
 								placeholder="What do you like to eat today?"
 								className="border-0 focus-visible:ring-0 shadow-none h-[60px] placeholder:text-lg text-lg! placeholder:text-[#9E9E9E]"
 							/>
 						</div>
 
-						<Button className="bg-linear-to-r from-[#FF7A7A] to-[#F65900] sm:h-full h-[60px] has-[>svg]:px-12 gap-2 text-lg font-bold">
-							<Search className="h-[20px] w-[20px]" strokeWidth={3} />
-							Find Meal
+						<Button onClick={filterMeals} disabled={isFiltering} className="bg-linear-to-r from-[#FF7A7A] to-[#F65900] sm:h-full h-[60px] has-[>svg]:px-12 gap-2 text-lg font-bold">
+							{isFiltering ? <Spinner className="h-[20px] w-[20px]" strokeWidth={3} /> : <Search className="h-[20px] w-[20px]" strokeWidth={3} />}
+							{isFiltering ? "Finding Meal..." : "Find Meal"}
 						</Button>
 					</CardContent>
 				</Card>
