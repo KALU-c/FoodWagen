@@ -1,7 +1,7 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { AnimatePresence, cubicBezier, motion } from "motion/react";
 import * as React from "react";
 
 import {
@@ -266,7 +266,7 @@ function DropDrawerContent({
   // Animation transition
   const transition = {
     duration: 0.3,
-    ease: [0.25, 0.1, 0.25, 1.0], // cubic-bezier easing
+    ease: cubicBezier(0.25, 0.1, 0.25, 1.0), // cubic-bezier easing
   };
 
   if (isMobile) {
@@ -322,9 +322,9 @@ function DropDrawerContent({
                     transition={transition}
                     className="pb-6 space-y-1.5 w-full h-full"
                   >
-                    {activeSubmenu
+                    {/* {activeSubmenu
                       ? getSubmenuContent(activeSubmenu)
-                      : children}
+                      : children} */}
                   </motion.div>
                 </AnimatePresence>
               </div>
@@ -457,11 +457,12 @@ function DropDrawerItem({
         className={cn(
           "flex cursor-pointer items-center justify-between px-4 py-4",
           // Only apply margin, background and rounded corners if not in a group
-          !isInsideGroup && "bg-accent dark:bg-accent mx-2 my-1.5 rounded-md",
+          !isInsideGroup && "bg-neutral-100 dark:bg-neutral-800 mx-2 my-1.5 rounded-md",
           // For items in a group, don't add background but add more padding
           isInsideGroup && "bg-transparent py-4",
           inset && "pl-8",
           variant === "destructive" && "text-destructive dark:text-destructive",
+          // variant === "warning" && "text-amber-400 dark:text-amber-400",
           disabled && "pointer-events-none opacity-50",
           className
         )}
@@ -638,7 +639,7 @@ function DropDrawerGroup({
         data-slot="drop-drawer-group"
         role="group"
         className={cn(
-          "bg-accent dark:bg-accent mx-2 my-3 overflow-hidden rounded-xl",
+          "bg-neutral-100 dark:bg-neutral-800 mx-2 my-3 overflow-hidden rounded-xl",
           className
         )}
         {...props}
@@ -674,9 +675,9 @@ interface SubmenuContextType {
 
 const SubmenuContext = React.createContext<SubmenuContextType>({
   activeSubmenu: null,
-  setActiveSubmenu: () => {},
+  setActiveSubmenu: () => { },
   submenuTitle: null,
-  setSubmenuTitle: () => {},
+  setSubmenuTitle: () => { },
   navigateToSubmenu: undefined,
   registerSubmenuContent: undefined,
 });
@@ -965,5 +966,6 @@ export {
   DropDrawerSub,
   DropDrawerSubContent,
   DropDrawerSubTrigger,
-  DropDrawerTrigger,
+  DropDrawerTrigger
 };
+

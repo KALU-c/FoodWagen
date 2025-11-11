@@ -1,7 +1,8 @@
+import { MealDropDrawer } from "@/components/MealDropDrawer"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import { FeaturedMealType } from "@/types/featured-meals"
-import { MoreVertical, Star, Tag } from "lucide-react"
+import { Star, Tag } from "lucide-react"
 import Image from "next/image"
 
 const MealCard = ({
@@ -51,7 +52,8 @@ const MealCard = ({
 						</div>
 					</div>
 				</div>
-				<MoreVertical className="text-[#424242] text-xl" />
+
+				<MealDropDrawer />
 			</CardContent>
 			<CardFooter className="p-0">
 				<div className={cn("px-4 py-2 rounded-2xl", status === "Closed" ? "bg-[#F17228]/20" : "bg-[#79B93C]/20")}>
