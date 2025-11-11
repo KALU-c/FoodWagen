@@ -57,7 +57,7 @@ const Hero = () => {
 				</Card>
 			</div>
 
-			<div className="relative self-end h-[500px] aspect-square">
+			<div className="relative self-end h-[500px] aspect-square max-md:hidden">
 				{/* TODO - add image shadow */}
 				<Image
 					src={'/hero-image.png'}
