@@ -1,4 +1,4 @@
-import { MealDropDrawer } from "@/components/MealDropDrawer"
+import { MealDropDrawer } from "@/components/Meal/MealDropDrawer"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import { FeaturedMealType } from "@/types/featured-meals"

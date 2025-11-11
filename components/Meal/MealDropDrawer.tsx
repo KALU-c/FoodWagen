@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
+import { Button } from "@/components/ui/button";
 import {
 	DropDrawer,
 	DropDrawerContent,
@@ -14,7 +15,6 @@ import {
 	DropDrawerItem,
 	DropDrawerTrigger
 } from "@/components/ui/dropdrawer";
-import { Button } from "./ui/button";
 
 export function MealDropDrawer() {
 	const [open, setOpen] = useState(false);
