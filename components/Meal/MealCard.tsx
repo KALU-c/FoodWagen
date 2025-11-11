@@ -12,7 +12,8 @@ const MealCard = ({
 	rating,
 	Price,
 	logo,
-	status
+	status,
+	avatar
 }: FeaturedMealType) => {
 	return (
 		<Card className="p-0 gap-[28px] min-w-[357px] w-full border-none shadow-none">
@@ -21,7 +22,7 @@ const MealCard = ({
 					alt={name}
 					width={340}
 					height={301}
-					src={image}
+					src={image ?? avatar}
 					className="absolute h-full w-full object-cover transition-transform duration-500 hover:scale-105"
 					unoptimized
 				/>
