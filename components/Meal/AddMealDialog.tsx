@@ -202,7 +202,7 @@ const AddMealDialog = ({ children }: { children: React.ReactNode }) => {
 						<DialogFooter className="pt-4">
 							<Button disabled={isLoading} type="submit" className="flex-1 bg-linear-to-r from-[#FFBA26] to-[#FF9A0E] h-[50px] text-lg font-bold rounded-xl">
 								{isLoading && <Spinner />}
-								{isLoading ? "Adding Meal..." : "Add"}
+								{isLoading ? "Adding Food..." : "Add"}
 							</Button>
 							<DialogClose asChild>
 								<Button disabled={isLoading} variant="outline" className="flex-1 rounded-xl border-primary h-full text-lg font-bold">Cancel</Button>

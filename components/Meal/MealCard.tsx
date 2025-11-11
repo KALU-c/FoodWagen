@@ -19,7 +19,7 @@ const MealCard = ({ meal }: { meal: FeaturedMealType }) => {
 	} = meal;
 
 	return (
-		<Card className="p-0 gap-[28px] min-w-[357px] w-full border-none shadow-none">
+		<Card className="p-0 gap-[28px] min-w-[357px] max-w-[370px] w-full border-none shadow-none">
 			<CardHeader className="relative p-0 h-[301px] rounded-2xl overflow-hidden gap-0">
 				<Image
 					alt={name}
@@ -46,8 +46,8 @@ const MealCard = ({ meal }: { meal: FeaturedMealType }) => {
 						unoptimized
 					/>
 
-					<div className="flex flex-col gap-1">
-						<p className="text-[22px] font-bold leading-none">{restaurantName ?? restaurant?.name}</p>
+					<div className="flex flex-col">
+						<p className="text-[22px] font-bold max-w-[200px] truncate">{restaurantName ?? restaurant?.name}</p>
 						<div className="flex items-center gap-2">
 							<Star className="size-[22px] text-primary fill-primary" />
 							<p className="text-[22px] text-primary">{rating}</p>

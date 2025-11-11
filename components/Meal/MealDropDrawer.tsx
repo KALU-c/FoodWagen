@@ -43,7 +43,7 @@ export function MealDropDrawer({
 						foodRating={meal?.rating}
 						restaurantLogo={meal?.logo}
 						restaurantName={meal?.restaurantName}
-						restaurantStatus={meal?.status}
+						restaurantStatus={meal?.open}
 					>
 						<DropDrawerItem icon={<PencilLine className="h-5 w-5" />} onSelect={(e) => e.preventDefault()}>
 							Edit

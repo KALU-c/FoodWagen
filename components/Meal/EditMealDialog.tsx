@@ -48,7 +48,7 @@ const EditMealDialog = ({
 	foodImage: string,
 	restaurantName: string
 	restaurantLogo: string
-	restaurantStatus: string
+	restaurantStatus: boolean
 }) => {
 	const queryClient = useQueryClient()
 	const [isLoading, setIsLoading] = useState(false)
@@ -61,7 +61,7 @@ const EditMealDialog = ({
 			food_rating: Number(foodRating),
 			restaurant_logo: restaurantLogo,
 			restaurant_name: restaurantName,
-			restaurant_status: restaurantStatus as "Open Now" | "Closed"
+			restaurant_status: restaurantStatus === true ? "Open Now" : "Closed"
 		}
 	})
 
@@ -232,7 +232,7 @@ const EditMealDialog = ({
 						<DialogFooter className="pt-4">
 							<Button disabled={isLoading} type="submit" className="flex-1 bg-linear-to-r from-[#FFBA26] to-[#FF9A0E] h-[50px] text-lg font-bold rounded-xl">
 								{isLoading && <Spinner />}
-								{isLoading ? "Saving Meal..." : "Save"}
+								{isLoading ? "Updating Food..." : "Save"}
 							</Button>
 							<DialogClose asChild>
 								<Button disabled={isLoading} variant="outline" className="flex-1 rounded-xl border-primary h-full text-lg font-bold">Cancel</Button>
