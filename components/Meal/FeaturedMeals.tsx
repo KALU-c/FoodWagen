@@ -1,13 +1,15 @@
 "use client"
 
 import { useFeaturedMeals } from "@/hooks/useFeaturedMeals"
+import MealCardSkeleton from "../skeleton/MealCardSkeleton"
 import MealCard from "./MealCard"
 
 const FeaturedMeals = () => {
 	const { data: featuredMeals, isPending, error } = useFeaturedMeals()
 
-	if(isPending) return <p>loading...</p>
-	if(error) return <p>error</p>
+	if (isPending) return <FeaturedMealsSkeleton />
+	// TODO - handle error state
+	if (error) return <p>error</p>
 
 	return (
 		<section className="flex flex-col gap-[90px] items-center">
@@ -21,5 +23,17 @@ const FeaturedMeals = () => {
 		</section>
 	)
 }
+
+const FeaturedMealsSkeleton = () => (
+	<section className="flex flex-col gap-[90px] items-center">
+		<h2 className="text-[43px] font-bold">Featured Meals</h2>
+
+		<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
+			{Array.from({ length: 8 }).map((_, index) => (
+				<MealCardSkeleton key={`featured-meals-skeleton-${index}`} />
+			))}
+		</div>
+	</section>
+)
 
 export default FeaturedMeals

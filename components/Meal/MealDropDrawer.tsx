@@ -16,13 +16,13 @@ import {
 	DropDrawerTrigger
 } from "@/components/ui/dropdrawer";
 
-export function MealDropDrawer() {
+export function MealDropDrawer({ disabled = false }: { disabled?: boolean }) {
 	const [open, setOpen] = useState(false);
 
 	return (
 		<DropDrawer open={open} onOpenChange={setOpen}>
 			<DropDrawerTrigger asChild>
-				<Button size={'icon'} variant={'ghost'}>
+				<Button size={'icon'} variant={'ghost'} disabled={disabled}>
 					<MoreVertical className="text-[#424242] text-xl" />
 				</Button>
 			</DropDrawerTrigger>
