@@ -59,14 +59,16 @@ const Hero = () => {
 			</div>
 
 			<div className="relative self-end h-[500px] aspect-square max-xl:hidden">
-				{/* TODO - add image shadow */}
-				<Image
-					src={'/hero-image.png'}
-					alt="Image"
-					height={505}
-					width={604}
-					className="object-contain absolute -bottom-12 drop-shadow-2xl"
-				/>
+				<div className="absolute -bottom-12 w-full h-full drop-shadow-[-20px_40px_50px_rgba(0,0,0,0.6)]">
+					<Image
+						src={'/hero-image.png'}
+						alt="Image"
+						height={505}
+						width={604}
+						className="object-contain w-full h-full"
+						priority
+					/>
+				</div>
 			</div>
 		</section>
 	)
