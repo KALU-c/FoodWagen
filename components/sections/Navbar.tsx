@@ -7,7 +7,7 @@ const Navbar = () => {
 			<Image 
 				src={'/logo.svg'}
 				alt="FoodWangen logo"
-				className="h-[37px]"
+				className="h-[30px] lg:h-[37px] w-fit"
 				height={37}
 				width={200}
 			/>

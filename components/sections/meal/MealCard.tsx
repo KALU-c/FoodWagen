@@ -1,4 +1,5 @@
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
+import { cn } from "@/lib/utils"
 import { FeaturedMealType } from "@/types/featured-meals"
 import { MoreVertical, Star, Tag } from "lucide-react"
 import Image from "next/image"
@@ -13,14 +14,14 @@ const MealCard = ({
 	status
 }: FeaturedMealType) => {
 	return (
-		<Card className="p-0 gap-[28px] min-w-[340px] max-w-[357px] border-none shadow-none">
+		<Card className="p-0 gap-[28px] min-w-[357px] w-full border-none shadow-none">
 			<CardHeader className="relative p-0 h-[301px] rounded-2xl overflow-hidden gap-0">
 				<Image
 					alt={name}
 					width={340}
 					height={301}
 					src={image}
-					className="absolute h-full object-cover transition-transform duration-500 hover:scale-105"
+					className="absolute h-full w-full object-cover transition-transform duration-500 hover:scale-105"
 					unoptimized
 				/>
 
@@ -31,13 +32,16 @@ const MealCard = ({
 			</CardHeader>
 			<CardContent className="p-0 flex justify-between">
 				<div className="flex gap-6">
-					<Image
-						src={logo}
-						alt={restaurantName}
-						height={64}
-						width={64}
-						className="h-16 w-16 rounded-lg"
-					/>
+					{logo && (
+						<Image
+							src={logo}
+							alt={restaurantName}
+							height={64}
+							width={64}
+							className="h-16 w-16 object-cover rounded-lg transition-transform duration-500 hover:scale-105"
+							unoptimized
+						/>
+					)}
 
 					<div className="flex flex-col gap-1">
 						<p className="text-[22px] font-bold leading-none">{restaurantName}</p>
@@ -50,8 +54,8 @@ const MealCard = ({
 				<MoreVertical className="text-[#424242] text-xl" />
 			</CardContent>
 			<CardFooter className="p-0">
-				<div className="px-4 py-2 bg-[#F17228]/20 rounded-2xl">
-					<p className="text-xl font-bold text-[#F17228]">{status}</p>
+				<div className={cn("px-4 py-2 rounded-2xl", status === "Closed" ? "bg-[#F17228]/20" : "bg-[#79B93C]/20")}>
+					<p className={cn("text-xl font-bold leading-none", status === "Closed" ? "text-[#F17228]" : "text-[#79B93C]")}>{status}</p>
 				</div>
 			</CardFooter>
 		</Card>
