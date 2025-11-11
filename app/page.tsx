@@ -1,6 +1,7 @@
 import FeaturedMeals from "@/components/sections/meal/FeaturedMeals";
 import Hero from "@/components/sections/Hero";
 import Navbar from "@/components/sections/Navbar";
+import Footer from "@/components/sections/Footer";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
         <Hero />
       </div>
       <FeaturedMeals />
+      <Footer />
     </main>
   );
 }
