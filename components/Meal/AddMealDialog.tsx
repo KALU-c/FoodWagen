@@ -21,12 +21,13 @@ import {
 } from "@/components/ui/select"
 import { addMealSchema } from "@/schema/add-meal"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 import z from "zod"
 import { Spinner } from "../ui/spinner"
-import { useQueryClient } from "@tanstack/react-query"
 
 type AddMealSchemaType = z.infer<typeof addMealSchema>
 
@@ -46,14 +47,18 @@ const AddMealDialog = ({ children }: { children: React.ReactNode }) => {
 				avatar: value.food_image,
 				rating: value.food_rating,
 				open: value.restaurant_status === "Open Now" ? true : false,
-				logo: value.restaurant_logo
+				logo: value.restaurant_logo,
+				restaurantName: value.restaurant_name
 			}
 
-			await axios.post('https://6852821e0594059b23cdd834.mockapi.io/Food', payload);
-
+			await axios.post('https://6852821e0594059b23cdd834.mockapi.io/Food', payload)
 			queryClient.invalidateQueries({ queryKey: ['featured-meals'] })
+			form.reset()
+
+			toast.success("Meal added successfully!")
 		} catch (error) {
 			console.error(error)
+			toast.error("Failed to add meal. Please try again.")
 		} finally {
 			setIsLoading(false)
 		}

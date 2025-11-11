@@ -1,4 +1,5 @@
 import QueryProvider from "@/components/QueryProvider";
+import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -40,6 +41,18 @@ export default function RootLayout({
       >
         <QueryProvider>
           {children}
+          <Toaster
+            invert
+            richColors
+            position="top-center"
+            toastOptions={{
+              classNames: {
+                toast: "!rounded-3xl !font-sans",
+                title: "!text-base",
+                description: "!text-sm",
+              },
+            }}
+          />
         </QueryProvider>
       </body>
     </html>

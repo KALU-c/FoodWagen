@@ -27,6 +27,7 @@ import z from "zod"
 import { Spinner } from "../ui/spinner"
 import axios from "axios"
 import { useQueryClient } from "@tanstack/react-query"
+import { toast } from "sonner"
 
 type AddMealSchemaType = z.infer<typeof addMealSchema>
 
@@ -76,10 +77,12 @@ const EditMealDialog = ({
 			}
 
 			await axios.put(`https://6852821e0594059b23cdd834.mockapi.io/Food/${foodId}`, payload);
-
 			queryClient.invalidateQueries({ queryKey: ['featured-meals'] })
+
+			toast.success("Meal updated successfully!")
 		} catch (error) {
 			console.error(error)
+			toast.error("Failed to update meal. Please try again.")
 		} finally {
 			setIsLoading(false)
 		}
