@@ -13,17 +13,17 @@ import Image from "next/image"
 const Hero = () => {
 	return (
 		<section className="h-[628px] container-desktop bg-primary flex gap-28 overflow-hidden">
-			<div className="flex flex-col gap-8 justify-center">
+			<div className="flex flex-1 flex-col gap-8 justify-center">
 				{/* title + short short description */}
 				<div className="flex flex-col gap-3 text-white">
 					<h1 className="text-[clamp(2.8125rem,1.7131rem+4.8864vw,5.5rem)] font-bold leading-none">Are you starving?</h1>
-					<p className="text-[22px]">Withing a few clicks, find meals that are accessible near you</p>
+					<p className="text-[22px]">Within a few clicks, find meals that are accessible near you</p>
 				</div>
 
 				{/* order card */}
-				<Card className="max-w-4xl gap-4">
+				<Card className="max-w-6xl gap-5">
 					<CardHeader>
-						<Tabs>
+						<Tabs defaultValue={'delivery'}>
 							<TabsList>
 								<TabsTrigger value="delivery" className="h-[40px]">
 									{/* TODO - change these icons */}
