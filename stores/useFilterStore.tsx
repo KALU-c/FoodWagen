@@ -6,7 +6,7 @@ type FilterStore = {
 	filter: string
 	isFiltering: boolean
 	filterMeals: () => void
-	filteredMeals: FeaturedMealType[]
+	filteredMeals: FeaturedMealType[] | null
 	setFilter: (filter: string) => void
 }
 
@@ -14,7 +14,7 @@ export const useFilterStore = create<FilterStore>((set, get) => ({
 	filter: "",
 	isFiltering: false,
 	setFilter: (filter: string) => {
-		set({ filter })
+		set({ filter, filteredMeals: null })
 	},
 	filterMeals: async () => {
 		const query = get().filter
@@ -29,5 +29,5 @@ export const useFilterStore = create<FilterStore>((set, get) => ({
 			set({ isFiltering: false })
 		}
 	},
-	filteredMeals: []
+	filteredMeals: null
 }))

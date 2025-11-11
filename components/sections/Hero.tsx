@@ -19,6 +19,14 @@ import Image from "next/image"
 const Hero = () => {
 	const { filter, setFilter, filterMeals, isFiltering } = useFilterStore()
 
+	const handleClick = async () => {
+		if (filter.length <= 0) return
+
+		await filterMeals()
+		const section = document.getElementById("featured-meals")
+		section?.scrollIntoView({ behavior: "smooth" })
+	}
+
 	return (
 		<section className="h-[628px] container-desktop bg-primary flex gap-28 overflow-hidden">
 			<div className="flex flex-1 flex-col gap-8 justify-center">
@@ -58,7 +66,7 @@ const Hero = () => {
 							/>
 						</div>
 
-						<Button onClick={filterMeals} disabled={isFiltering} className="bg-linear-to-r from-[#FF7A7A] to-[#F65900] sm:h-full h-[60px] has-[>svg]:px-12 gap-2 text-lg font-bold">
+						<Button onClick={handleClick} disabled={isFiltering} className="bg-linear-to-r from-[#FF7A7A] to-[#F65900] sm:h-full h-[60px] has-[>svg]:px-12 gap-2 text-lg font-bold">
 							{isFiltering ? <Spinner className="h-[20px] w-[20px]" strokeWidth={3} /> : <Search className="h-[20px] w-[20px]" strokeWidth={3} />}
 							{isFiltering ? "Finding Meal..." : "Find Meal"}
 						</Button>

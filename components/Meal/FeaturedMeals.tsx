@@ -1,8 +1,18 @@
 "use client"
 
+import MealCardSkeleton from "@/components/skeleton/MealCardSkeleton"
+import { Button } from "@/components/ui/button"
+import {
+	Empty,
+	EmptyContent,
+	EmptyDescription,
+	EmptyHeader,
+	EmptyMedia,
+	EmptyTitle,
+} from "@/components/ui/empty"
 import { useFeaturedMeals } from "@/hooks/useFeaturedMeals"
 import { useFilterStore } from "@/stores/useFilterStore"
-import MealCardSkeleton from "../skeleton/MealCardSkeleton"
+import { FolderOpen } from "lucide-react"
 import MealCard from "./MealCard"
 
 const FeaturedMeals = () => {
@@ -10,16 +20,17 @@ const FeaturedMeals = () => {
 	const { filteredMeals, isFiltering, filter } = useFilterStore()
 
 	if (isPending || isFiltering) return <FeaturedMealsSkeleton />
-	// TODO - handle error state
-	if (error) return <p>error</p>
+	if (error) return <FeaturedMealError />
 
 	const mealsToDisplay =
-		filter.trim().length > 0 && filteredMeals.length > 0
+		filter.trim().length > 0 && filteredMeals
 			? filteredMeals
 			: featuredMeals
 
+	if (filter.trim().length > 0 && mealsToDisplay?.length <= 0) return <FeaturedMealEmpty />
+
 	return (
-		<section className="flex flex-col gap-[90px] items-center">
+		<section id="featured-meals" className="flex flex-col gap-[90px] items-center">
 			<h2 className="text-[43px] font-bold">Featured Meals</h2>
 
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
@@ -32,7 +43,7 @@ const FeaturedMeals = () => {
 }
 
 const FeaturedMealsSkeleton = () => (
-	<section className="flex flex-col gap-[90px] items-center">
+	<section id="featured-meals" className="flex flex-col gap-[90px] items-center">
 		<h2 className="text-[43px] font-bold">Featured Meals</h2>
 
 		<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
@@ -41,6 +52,44 @@ const FeaturedMealsSkeleton = () => (
 			))}
 		</div>
 	</section>
+)
+
+const FeaturedMealError = () => (
+	<Empty id="featured-meals">
+		<EmptyHeader>
+			<EmptyMedia variant="icon">
+				<FolderOpen />
+			</EmptyMedia>
+			<EmptyTitle>Something Went Wrong</EmptyTitle>
+			<EmptyDescription>
+				We couldn&apos;t load meals right now. Please check your internet connection or try again later.
+			</EmptyDescription>
+		</EmptyHeader>
+		<EmptyContent>
+			<Button onClick={() => window.location.reload()}>
+				Retry
+			</Button>
+		</EmptyContent>
+	</Empty>
+)
+
+const FeaturedMealEmpty = () => (
+	<Empty id="featured-meals">
+		<EmptyHeader>
+			<EmptyMedia variant="icon">
+				<FolderOpen />
+			</EmptyMedia>
+			<EmptyTitle>No Meals Found</EmptyTitle>
+			<EmptyDescription>
+				We couldn&apos;t find any meals matching your search. Try adjusting your filter or browse all meals again.
+			</EmptyDescription>
+		</EmptyHeader>
+		<EmptyContent>
+			<Button onClick={() => window.location.reload()}>
+				Reload Meals
+			</Button>
+		</EmptyContent>
+	</Empty>
 )
 
 export default FeaturedMeals
