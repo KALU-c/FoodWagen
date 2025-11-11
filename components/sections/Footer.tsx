@@ -45,8 +45,8 @@ const Footer = () => {
 	return (
 		<footer className='bg-[#212121] text-white pb-8'>
 			<div className="container-desktop flex flex-col gap-4">
-				<div className="flex justify-between pb-8 pt-16">
-					<div className="flex gap-40">
+				<div className="flex flex-wrap gap-10 justify-between pb-8 pt-16">
+					<div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
 						{links.map((link, index) => (
 							<div key={`${link.group}-${index}`} className="flex flex-col gap-6">
 								<p className="text-[22px] font-bold">{link.group}</p>
@@ -83,7 +83,7 @@ const Footer = () => {
 						<p className="text-lg text-[#F5F5F5]/60 font-bold">Receive exclusive offer in your mailbox</p>
 
 						<div className="flex gap-4">
-							<div className="relative bg-[#424242] flex items-center rounded-md focus-within:ring-1 focus-within:ring-ring pl-4 h-[60px] min-w-[340px]">
+							<div className="relative bg-[#424242] flex items-center rounded-md focus-within:ring-1 focus-within:ring-ring pl-4 h-[60px] xl:min-w-[340px]">
 								<Mail />
 								<Input
 									type="email"
