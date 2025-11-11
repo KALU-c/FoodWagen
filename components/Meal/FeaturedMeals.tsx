@@ -33,7 +33,7 @@ const FeaturedMeals = () => {
 		<section id="featured-meals" className="flex flex-col gap-[90px] items-center">
 			<h2 className="text-[43px] font-bold">Featured Meals</h2>
 
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 w-full container-desktop">
 				{mealsToDisplay.map(meal => (
 					<MealCard key={meal.id} meal={meal} />
 				))}

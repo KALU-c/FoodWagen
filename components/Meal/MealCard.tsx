@@ -19,7 +19,7 @@ const MealCard = ({ meal }: { meal: FeaturedMealType }) => {
 	} = meal;
 
 	return (
-		<Card className="p-0 gap-[28px] min-w-[320px] max-w-[370px] w-full border-none shadow-none">
+		<Card className="p-0 gap-[28px] min-w-[320px] w-full border-none shadow-none">
 			<CardHeader className="relative p-0 h-[301px] rounded-2xl overflow-hidden gap-0">
 				<Image
 					alt={name}
