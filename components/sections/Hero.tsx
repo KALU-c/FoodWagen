@@ -1,3 +1,5 @@
+import { Bag } from "@/components/icons/Bag"
+import { Bike } from "@/components/icons/Bike"
 import { Button } from "@/components/ui/button"
 import {
 	Card,
@@ -7,7 +9,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Motorbike, Search, ShoppingBag } from "lucide-react"
+import { Search } from "lucide-react"
 import Image from "next/image"
 
 const Hero = () => {
@@ -26,12 +28,11 @@ const Hero = () => {
 						<Tabs defaultValue={'delivery'}>
 							<TabsList>
 								<TabsTrigger value="delivery" className="h-[40px]">
-									{/* TODO - change these icons */}
-									<Motorbike />
+									<Bike />
 									Delivery
 								</TabsTrigger>
 								<TabsTrigger value="pickup" className="h-[40px]">
-									<ShoppingBag />
+									<Bag />
 									Pickup
 								</TabsTrigger>
 							</TabsList>
@@ -57,7 +58,7 @@ const Hero = () => {
 				</Card>
 			</div>
 
-			<div className="relative self-end h-[500px] aspect-square max-md:hidden">
+			<div className="relative self-end h-[500px] aspect-square max-xl:hidden">
 				{/* TODO - add image shadow */}
 				<Image
 					src={'/hero-image.png'}
