@@ -5,16 +5,18 @@ import { FeaturedMealType } from "@/types/featured-meals"
 import { Star, Tag } from "lucide-react"
 import Image from "next/image"
 
-const MealCard = ({
-	name,
-	restaurantName,
-	image,
-	rating,
-	Price,
-	logo,
-	status,
-	avatar
-}: FeaturedMealType) => {
+const MealCard = ({ meal }: { meal: FeaturedMealType }) => {
+	const {
+		name,
+		restaurantName,
+		image,
+		rating,
+		Price,
+		logo,
+		status,
+		avatar,
+	} = meal;
+
 	return (
 		<Card className="p-0 gap-[28px] min-w-[357px] w-full border-none shadow-none">
 			<CardHeader className="relative p-0 h-[301px] rounded-2xl overflow-hidden gap-0">
@@ -54,7 +56,7 @@ const MealCard = ({
 					</div>
 				</div>
 
-				<MealDropDrawer />
+				<MealDropDrawer meal={meal} />
 			</CardContent>
 			<CardFooter className="p-0">
 				<div className={cn("px-4 py-2 rounded-2xl", status === "Closed" ? "bg-[#F17228]/20" : "bg-[#79B93C]/20")}>

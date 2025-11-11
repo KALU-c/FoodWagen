@@ -15,8 +15,16 @@ import {
 	DropDrawerItem,
 	DropDrawerTrigger
 } from "@/components/ui/dropdrawer";
+import { FeaturedMealType } from "@/types/featured-meals";
+import EditMealDialog from "./EditMealDialog";
 
-export function MealDropDrawer({ disabled = false }: { disabled?: boolean }) {
+export function MealDropDrawer({
+	disabled = false,
+	meal
+}: {
+	disabled?: boolean,
+	meal: FeaturedMealType
+}) {
 	const [open, setOpen] = useState(false);
 
 	return (
@@ -28,9 +36,19 @@ export function MealDropDrawer({ disabled = false }: { disabled?: boolean }) {
 			</DropDrawerTrigger>
 			<DropDrawerContent>
 				<DropDrawerGroup>
-					<DropDrawerItem icon={<PencilLine className="h-5 w-5" />} onSelect={(e) => e.preventDefault()}>
-						Edit
-					</DropDrawerItem>
+					<EditMealDialog
+						foodId={meal?.id}
+						foodName={meal?.name}
+						foodImage={meal?.image}
+						foodRating={meal?.rating}
+						restaurantLogo={meal?.logo}
+						restaurantName={meal?.restaurantName}
+						restaurantStatus={meal?.status}
+					>
+						<DropDrawerItem icon={<PencilLine className="h-5 w-5" />} onSelect={(e) => e.preventDefault()}>
+							Edit
+						</DropDrawerItem>
+					</EditMealDialog>
 					{/* <DropDrawerSeparator /> */}
 					<DropDrawerItem variant="destructive" icon={<Trash2 className="h-5 w-5" />}>
 						Delete

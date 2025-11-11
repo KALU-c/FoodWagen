@@ -17,7 +17,7 @@ const FeaturedMeals = () => {
 
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
 				{featuredMeals.map(meal => (
-					<MealCard key={meal.id} {...meal} />
+					<MealCard key={meal.id} meal={meal} />
 				))}
 			</div>
 		</section>

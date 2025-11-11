@@ -10,7 +10,7 @@ import {
 	DialogTitle,
 	DialogTrigger
 } from "@/components/ui/dialog"
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import {
 	Select,
@@ -21,21 +21,47 @@ import {
 } from "@/components/ui/select"
 import { addMealSchema } from "@/schema/add-meal"
 import { zodResolver } from "@hookform/resolvers/zod"
-import axios from "axios"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import z from "zod"
 import { Spinner } from "../ui/spinner"
+import axios from "axios"
 import { useQueryClient } from "@tanstack/react-query"
 
 type AddMealSchemaType = z.infer<typeof addMealSchema>
 
-const AddMealDialog = ({ children }: { children: React.ReactNode }) => {
+const EditMealDialog = ({ 
+	foodId,
+	children,
+	foodName,
+	foodImage,
+	foodRating,
+	restaurantLogo,
+	restaurantName,
+	restaurantStatus
+}: { 
+	children: React.ReactNode,
+	foodId: string,
+	foodName: string,
+	foodRating: number,
+	foodImage: string,
+	restaurantName: string
+	restaurantLogo: string
+	restaurantStatus: string
+}) => {
 	const queryClient = useQueryClient()
 	const [isLoading, setIsLoading] = useState(false)
 
 	const form = useForm<AddMealSchemaType>({
-		resolver: zodResolver(addMealSchema)
+		resolver: zodResolver(addMealSchema),
+		defaultValues: {
+			food_name: foodName,
+			food_image: foodImage,
+			food_rating: Number(foodRating),
+			restaurant_logo: restaurantLogo,
+			restaurant_name: restaurantName,
+			restaurant_status: restaurantStatus as "Open Now" | "Closed"
+		}
 	})
 
 	const onSubmit = async (value: AddMealSchemaType) => {
@@ -49,7 +75,7 @@ const AddMealDialog = ({ children }: { children: React.ReactNode }) => {
 				logo: value.restaurant_logo
 			}
 
-			await axios.post('https://6852821e0594059b23cdd834.mockapi.io/Food', payload);
+			await axios.put(`https://6852821e0594059b23cdd834.mockapi.io/Food/${foodId}`, payload);
 
 			queryClient.invalidateQueries({ queryKey: ['featured-meals'] })
 		} catch (error) {
@@ -66,7 +92,7 @@ const AddMealDialog = ({ children }: { children: React.ReactNode }) => {
 			</DialogTrigger>
 			<DialogContent showCloseButton={false} className="sm:max-w-[600px]">
 				<DialogHeader>
-					<DialogTitle className="text-center text-2xl font-bold text-primary">Add Meal</DialogTitle>
+					<DialogTitle className="text-center text-2xl font-bold text-primary">Edit Meal</DialogTitle>
 				</DialogHeader>
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)}>
@@ -76,6 +102,7 @@ const AddMealDialog = ({ children }: { children: React.ReactNode }) => {
 								name="food_name"
 								render={({ field }) => (
 									<FormItem>
+										<FormLabel>Food name</FormLabel>
 										<FormControl>
 											<Input
 												id="food_name"
@@ -95,6 +122,7 @@ const AddMealDialog = ({ children }: { children: React.ReactNode }) => {
 								name="food_rating"
 								render={({ field }) => (
 									<FormItem>
+										<FormLabel>Food rating</FormLabel>
 										<FormControl>
 											<Input
 												id="food_rating"
@@ -116,6 +144,7 @@ const AddMealDialog = ({ children }: { children: React.ReactNode }) => {
 								name="food_image"
 								render={({ field }) => (
 									<FormItem>
+										<FormLabel>Food image</FormLabel>
 										<FormControl>
 											<Input
 												id="food_image"
@@ -135,6 +164,7 @@ const AddMealDialog = ({ children }: { children: React.ReactNode }) => {
 								name="restaurant_name"
 								render={({ field }) => (
 									<FormItem>
+										<FormLabel>Restaurant name</FormLabel>
 										<FormControl>
 											<Input
 												id="restaurant_name"
@@ -154,6 +184,7 @@ const AddMealDialog = ({ children }: { children: React.ReactNode }) => {
 								name="restaurant_logo"
 								render={({ field }) => (
 									<FormItem>
+										<FormLabel>Restaurant logo</FormLabel>
 										<FormControl>
 											<Input
 												id="restaurant_logo"
@@ -173,6 +204,7 @@ const AddMealDialog = ({ children }: { children: React.ReactNode }) => {
 								name="restaurant_status"
 								render={({ field }) => (
 									<FormItem>
+										<FormLabel>Restaturant status</FormLabel>
 										<FormControl>
 											<Select
 												onValueChange={field.onChange}
@@ -197,7 +229,7 @@ const AddMealDialog = ({ children }: { children: React.ReactNode }) => {
 						<DialogFooter className="pt-4">
 							<Button disabled={isLoading} type="submit" className="flex-1 bg-linear-to-r from-[#FFBA26] to-[#FF9A0E] h-[50px] text-lg font-bold rounded-xl">
 								{isLoading && <Spinner />}
-								{isLoading ? "Adding Meal..." : "Add"}
+								{isLoading ? "Saving Meal..." : "Save"}
 							</Button>
 							<DialogClose asChild>
 								<Button disabled={isLoading} variant="outline" className="flex-1 rounded-xl border-primary h-full text-lg font-bold">Cancel</Button>
@@ -210,4 +242,4 @@ const AddMealDialog = ({ children }: { children: React.ReactNode }) => {
 	)
 }
 
-export default AddMealDialog
+export default EditMealDialog
