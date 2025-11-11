@@ -1,3 +1,4 @@
+import QueryProvider from "@/components/QueryProvider";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -37,7 +38,9 @@ export default function RootLayout({
       <body
         className={`${sourceSansPro.className} antialiased`}
       >
-        {children}
+        <QueryProvider>
+          {children}
+        </QueryProvider>
       </body>
     </html>
   );
