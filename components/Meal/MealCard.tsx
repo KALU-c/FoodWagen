@@ -15,6 +15,7 @@ const MealCard = ({ meal }: { meal: FeaturedMealType }) => {
 		logo,
 		status,
 		avatar,
+		restaurant
 	} = meal;
 
 	return (
@@ -36,19 +37,17 @@ const MealCard = ({ meal }: { meal: FeaturedMealType }) => {
 			</CardHeader>
 			<CardContent className="p-0 flex justify-between">
 				<div className="flex gap-6">
-					{logo && (
-						<Image
-							src={logo}
-							alt={restaurantName}
-							height={64}
-							width={64}
-							className="h-16 w-16 object-cover rounded-lg transition-transform duration-500 hover:scale-105"
-							unoptimized
-						/>
-					)}
+					<Image
+						src={logo ?? restaurant?.logo}
+						alt={restaurantName}
+						height={64}
+						width={64}
+						className="h-16 w-16 object-cover rounded-lg transition-transform duration-500 hover:scale-105"
+						unoptimized
+					/>
 
 					<div className="flex flex-col gap-1">
-						<p className="text-[22px] font-bold leading-none">{restaurantName}</p>
+						<p className="text-[22px] font-bold leading-none">{restaurantName ?? restaurant?.name}</p>
 						<div className="flex items-center gap-2">
 							<Star className="size-[22px] text-primary fill-primary" />
 							<p className="text-[22px] text-primary">{rating}</p>
@@ -60,7 +59,9 @@ const MealCard = ({ meal }: { meal: FeaturedMealType }) => {
 			</CardContent>
 			<CardFooter className="p-0">
 				<div className={cn("px-4 py-2 rounded-2xl", status === "Closed" ? "bg-[#F17228]/20" : "bg-[#79B93C]/20")}>
-					<p className={cn("text-xl font-bold leading-none", status === "Closed" ? "text-[#F17228]" : "text-[#79B93C]")}>{status}</p>
+					<p className={cn("text-xl font-bold leading-none", status === "Closed" ? "text-[#F17228]" : "text-[#79B93C]")}>
+						{status ?? restaurant?.status}
+					</p>
 				</div>
 			</CardFooter>
 		</Card>
