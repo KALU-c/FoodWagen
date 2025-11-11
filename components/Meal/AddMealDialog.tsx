@@ -19,6 +19,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select"
+import { Spinner } from "@/components/ui/spinner"
 import { addMealSchema } from "@/schema/add-meal"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useQueryClient } from "@tanstack/react-query"
@@ -27,12 +28,12 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import z from "zod"
-import { Spinner } from "../ui/spinner"
 
 type AddMealSchemaType = z.infer<typeof addMealSchema>
 
 const AddMealDialog = ({ children }: { children: React.ReactNode }) => {
 	const queryClient = useQueryClient()
+	const [open, setOpen] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
 
 	const form = useForm<AddMealSchemaType>({
@@ -60,12 +61,13 @@ const AddMealDialog = ({ children }: { children: React.ReactNode }) => {
 			console.error(error)
 			toast.error("Failed to add meal. Please try again.")
 		} finally {
+			setOpen(false)
 			setIsLoading(false)
 		}
 	}
 
 	return (
-		<Dialog>
+		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>
 				{children}
 			</DialogTrigger>

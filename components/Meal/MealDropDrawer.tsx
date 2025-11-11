@@ -16,6 +16,7 @@ import {
 	DropDrawerTrigger
 } from "@/components/ui/dropdrawer";
 import { FeaturedMealType } from "@/types/featured-meals";
+import DeleteMealDialog from "./DeleteMealDialog";
 import EditMealDialog from "./EditMealDialog";
 
 export function MealDropDrawer({
@@ -49,10 +50,11 @@ export function MealDropDrawer({
 							Edit
 						</DropDrawerItem>
 					</EditMealDialog>
-					{/* <DropDrawerSeparator /> */}
-					<DropDrawerItem variant="destructive" icon={<Trash2 className="h-5 w-5" />}>
-						Delete
-					</DropDrawerItem>
+					<DeleteMealDialog foodId={meal.id}>
+						<DropDrawerItem variant="destructive" icon={<Trash2 className="h-5 w-5" />} onSelect={(e) => e.preventDefault()}>
+							Delete
+						</DropDrawerItem>
+					</DeleteMealDialog>
 				</DropDrawerGroup>
 			</DropDrawerContent>
 		</DropDrawer>
