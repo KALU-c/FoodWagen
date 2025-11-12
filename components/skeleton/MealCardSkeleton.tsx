@@ -1,6 +1,7 @@
-import { MealDropDrawer } from "@/components/Meal/MealDropDrawer"
+import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
+import { MoreVertical } from "lucide-react"
 
 const MealCardSkeleton = () => {
 	return (
@@ -18,7 +19,9 @@ const MealCardSkeleton = () => {
 					</div>
 				</div>
 
-				<MealDropDrawer disabled />
+				<Button size={'icon'} variant={'ghost'} disabled>
+					<MoreVertical className="text-[#424242] text-xl" />
+				</Button>
 			</CardContent>
 			<CardFooter className="p-0">
 				<Skeleton className="h-9 w-32 rounded-2xl" />
