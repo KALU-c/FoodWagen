@@ -4,12 +4,8 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'images.unsplash.com'
-      },
-      {
-        protocol: 'https',
-        hostname: 'cdn.jsdelivr.net'
+        protocol: "https",
+        hostname: "*" // Allow loading images from any external source (API may return images from various domains)
       }
     ]
   }

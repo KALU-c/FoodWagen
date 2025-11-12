@@ -57,13 +57,15 @@ const MealCard = ({ meal }: { meal: FeaturedMealType }) => {
 
 				<MealDropDrawer meal={meal} />
 			</CardContent>
-			<CardFooter className="p-0">
-				<div className={cn("px-4 py-2 rounded-2xl", status === "Closed" ? "bg-[#F17228]/20" : "bg-[#79B93C]/20")}>
-					<p className={cn("text-xl font-bold leading-none", status === "Closed" ? "text-[#F17228]" : "text-[#79B93C]")}>
-						{status ?? restaurant?.status}
-					</p>
-				</div>
-			</CardFooter>
+			{(status || restaurant?.status) && (
+				<CardFooter className="p-0">
+					<div className={cn("px-4 py-2 rounded-2xl", status === "Closed" ? "bg-[#F17228]/20" : "bg-[#79B93C]/20")}>
+						<p className={cn("text-xl font-bold leading-none", status === "Closed" ? "text-[#F17228]" : "text-[#79B93C]")}>
+							{status ?? restaurant?.status}
+						</p>
+					</div>
+				</CardFooter>
+			)}
 		</Card>
 	)
 }
