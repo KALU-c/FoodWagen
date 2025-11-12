@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import {
 	Dialog,
@@ -8,11 +10,13 @@ import {
 	DialogTitle,
 	DialogTrigger
 } from "@/components/ui/dialog"
+import { useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
 import { useState } from "react"
 import { toast } from "sonner"
 
 const DeleteMealDialog = ({ children, foodId }: { children: React.ReactNode, foodId: string }) => {
+	const queryClient = useQueryClient()
 	const [open, setOpen] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
 
@@ -20,6 +24,7 @@ const DeleteMealDialog = ({ children, foodId }: { children: React.ReactNode, foo
 		setIsLoading(true)
 		try {
 			await axios.delete(`https://6852821e0594059b23cdd834.mockapi.io/Food/${foodId}`)
+			queryClient.invalidateQueries({ queryKey: ['featured-meals'] })
 			toast.success("Meal deleted successfully!")
 		} catch (error) {
 			console.error(error)
