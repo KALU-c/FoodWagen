@@ -13,6 +13,7 @@ import {
 import { useFeaturedMeals } from "@/hooks/useFeaturedMeals"
 import { useFilterStore } from "@/stores/useFilterStore"
 import { FolderOpen } from "lucide-react"
+import { motion } from "motion/react"
 import MealCard from "./MealCard"
 
 const FeaturedMeals = () => {
@@ -30,7 +31,13 @@ const FeaturedMeals = () => {
 	if (filter.trim().length > 0 && mealsToDisplay?.length <= 0) return <FeaturedMealEmpty />
 
 	return (
-		<section id="featured-meals" className="flex flex-col gap-[90px] items-center">
+		<motion.section
+			initial={{ opacity: 0, y: 30 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ duration: 0.8, delay: 0.4 }}
+			id="featured-meals"
+			className="flex flex-col gap-[90px] items-center"
+		>
 			<h2 className="text-[43px] font-bold">Featured Meals</h2>
 
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 w-full container-desktop">
@@ -38,16 +45,19 @@ const FeaturedMeals = () => {
 					<MealCard key={meal.id} meal={meal} />
 				))}
 			</div>
-		</section>
+		</motion.section>
 	)
 }
 
 const FeaturedMealsSkeleton = () => (
-	<section id="featured-meals" className="flex flex-col gap-[90px] items-center">
+	<section
+		id="featured-meals-skeleton"
+		className="flex flex-col gap-[90px] items-center"
+	>
 		<h2 className="text-[43px] font-bold">Featured Meals</h2>
 
 		<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
-			{Array.from({ length: 8 }).map((_, index) => (
+			{Array.from({ length: 12 }).map((_, index) => (
 				<MealCardSkeleton key={`featured-meals-skeleton-${index}`} />
 			))}
 		</div>
