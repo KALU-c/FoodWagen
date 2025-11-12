@@ -26,7 +26,7 @@ const MealCard = ({ meal }: { meal: FeaturedMealType }) => {
 					width={340}
 					height={301}
 					src={image ?? avatar}
-					className="absolute h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+					className="absolute h-full w-full object-cover transition-transform duration-150 hover:scale-105"
 					unoptimized
 				/>
 
@@ -42,7 +42,7 @@ const MealCard = ({ meal }: { meal: FeaturedMealType }) => {
 						alt={restaurantName}
 						height={64}
 						width={64}
-						className="h-16 w-16 object-cover rounded-lg transition-transform duration-500 hover:scale-105"
+						className="h-16 w-16 object-cover rounded-lg transition-transform duration-150 hover:scale-105"
 						unoptimized
 					/>
 
