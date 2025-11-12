@@ -50,9 +50,9 @@ const DeleteMealDialog = ({ children, foodId }: { children: React.ReactNode, foo
 						disabled={isLoading}
 						onClick={onDelete}
 						type="submit"
-						className="flex-1 bg-linear-to-r from-[#FFBA26] to-[#FF9A0E] h-[50px] text-lg font-bold rounded-xl"
+						className="flex-1 bg-linear-to-r from-[#FFBA26] to-[#FF9A0E] h-[50px] text-lg font-bold rounded-xl drop-shadow-[0px_10px_5px_rgba(255,174,0,0.29)]"
 					>
-						{isLoading ? "Deleting food..." : "Delete"}
+						{isLoading ? "Deleting food..." : "Yes"}
 					</Button>
 					<DialogClose asChild>
 						<Button

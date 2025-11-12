@@ -91,7 +91,7 @@ const Footer = () => {
 									className="border-0 focus-visible:ring-0 shadow-none placeholder:text-[#ADADAD] text-lg!"
 								/>
 							</div>
-							<Button className="px-6 h-full bg-linear-to-r from-[#FFB800] to-[#FF8A00] text-lg font-bold">
+							<Button className="px-6 h-full bg-linear-to-r from-[#FFB800] to-[#FF8A00] text-lg font-bold drop-shadow-[0px_7px_10px_rgba(255,174,0,0.30)]">
 								Subscribe
 							</Button>
 						</div>

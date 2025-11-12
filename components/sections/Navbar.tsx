@@ -14,7 +14,7 @@ const Navbar = () => {
 			/>
 
 			<AddMealDialog>
-				<Button size={'lg'} className="rounded-[14px] text-lg font-semibold bg-linear-to-r from-[#FFBA26] to-[#FF9A0E]">
+				<Button size={'lg'} className="rounded-[14px] text-lg font-semibold bg-linear-to-r from-[#FFBA26] to-[#FF9A0E] drop-shadow-[0px_10px_5px_rgba(255,174,0,0.29)]">
 					Add Meal
 				</Button>
 			</AddMealDialog>

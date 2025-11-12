@@ -232,7 +232,7 @@ const EditMealDialog = ({
 						</div>
 
 						<DialogFooter className="pt-4">
-							<Button disabled={isLoading} type="submit" className="flex-1 bg-linear-to-r from-[#FFBA26] to-[#FF9A0E] h-[50px] text-lg font-bold rounded-xl">
+							<Button disabled={isLoading} type="submit" className="flex-1 bg-linear-to-r from-[#FFBA26] to-[#FF9A0E] h-[50px] text-lg font-bold rounded-xl drop-shadow-[0px_10px_5px_rgba(255,174,0,0.29)]">
 								{isLoading && <Spinner />}
 								{isLoading ? "Updating Food..." : "Save"}
 							</Button>
